@@ -1,0 +1,47 @@
+* {
+  font-family: "Roboto Mono", monospace;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  background: #000;
+  padding: 1rem;
+  text-align: left;
+  color: #fff;
+}
+
+body {
+  text-align: center;
+}
+
+.social-icon {
+  border-radius: 50%;
+  width: 32px;
+  transition: 0.5s;
+}
+
+.social-icon:hover {
+  box-shadow: 0 0 10px #fff;
+}
+
+.error-dino {
+  transition: 0.5s;
+}
+
+.error-dino:hover {
+  box-shadow: 0 0 100px #ffa200;
+}
+
+.Logo-head {
+  text-decoration: none;
+  font-weight: 700;
+  color: #fff;
+  font-size: 50px;
+  transition: 0.5s;
+}
+
+.Logo-head:hover {
+  color: #ffa200;
+  text-shadow: 0 0 25px #ffa200;
+}

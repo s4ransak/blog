@@ -21,19 +21,87 @@ body {
   transition: 0.5s;
 }
 
-.social-icon:hover {
-  box-shadow: 0 0 10px #fff;
-}
-
 .Logo-head {
   text-decoration: none;
   font-weight: 700;
-  color: #fff;
+  color: #ffa200;
   font-size: 50px;
   transition: 0.5s;
 }
 
 .Logo-head:hover {
+  color: #000;
+  background-color: #ffa200;
+}
+
+.header {
+  font-size: 40px;
+}
+
+.nev {
+  font-size: x-large;
+  text-decoration: none;
+  color: #fff;
+  transition: 0.5s;
+}
+
+.nev:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.head {
+  font-size: 50px;
+  text-decoration: underline #ffa200;
+}
+
+p {
+  font-size: large;
+}
+
+.post-container {
+  max-width: 800px;
+  margin: 50px auto;
+  background-color: #f9f9f9;
+  padding: 20px;
+  text-align: left;
+}
+
+.post-title {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.post-content {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.post-author {
+  font-size: 14px;
+  color: #555;
+}
+
+.post-author img {
+  height: 14px;
+  width: 14px;
+}
+
+.post-share img {
+  height: 32px;
+  width: 32px;
+}
+
+a {
   color: #ffa200;
-  text-shadow: 0 0 25px #ffa200;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #000;
+}
+
+.error {
+  text-decoration-color: #e10000;
 }

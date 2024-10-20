@@ -62,7 +62,7 @@ p {
 .post-container {
   max-width: 800px;
   margin: 50px auto;
-  background-color: grey;
+  background-color: #f9f9f9;
   padding: 20px;
   text-align: left;
 }

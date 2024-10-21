@@ -105,3 +105,14 @@ a:hover {
 .error {
   text-decoration-color: #e10000;
 }
+
+button {
+  background-color: #ffa200;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}

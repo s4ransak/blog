@@ -3,38 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S4RANSAK</title>
-    <link rel="stylesheet" href="main.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100..700&display=swap" rel="stylesheet">
+    <title>ระบบอวยพรวันเกิด</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fdf6e3;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+        }
+
+        h1 {
+            color: #ff8c00;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin: 10px 0 5px;
+        }
+
+        input, textarea, button {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #ff8c00;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff6f00;
+        }
+
+        #status {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <div class="nav-flex">
-                <div class="logo">
-                    <a class="Logo-head" href="index.html">S4RANSAK</a>
-                </div>
-                <a class="nev" href="index.html">Home</a> | <a class="nev" href="shop.html">Shop</a> | <a class="nev" href="contact.html">Contact</a> | <a class="nev" href="blog.html">Blog</a>
-            </div>
-        </div>
-    </nav>
-    <br>
-    <h1 class="head">Contact</h1>
-    <br>
-    
-    <br>
-    <nav>
-        <div class="container">
-            <div class="nav-flex">
-                <div class="logo">
-                    <br>
-                    <br>
-                    <p>Copyright © 2024 S4RANSAK</p>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <div class="container">
+        <h1>🎉 ระบบอวยพรวันเกิด 🎉</h1>
+        <form id="birthdayForm">
+            <label for="name">ชื่อผู้ใช้ Instagram ของคุณ (ไม่จำเป็นต้องใส่ @)</label>
+            <input type="text" id="name" name="name" required placeholder="กรุณากรอกชื่อเป็นภาษาอังกฤษ">
+
+            <label for="email">อีเมลของคุณ (ไม่บังคับ)</label>
+            <input type="email" id="email" name="email" placeholder="example@example.com">
+
+            <label for="message">ข้อความอวยพร</label>
+            <textarea id="message" name="message">สุขสันต์วันเกิด! ขอให้มีความสุขมากๆ นะ</textarea>
+
+            <button type="submit">ส่งข้อความ</button>
+        </form>
+        <p id="status"></p>
+    </div>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        // Initializing EmailJS
+        emailjs.init("MUFmg-PGS37iDvS4i"); // ใส่ User ID ของคุณจาก EmailJS
+
+        document.getElementById("birthdayForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value || "ไม่มีอีเมล";
+            const message = document.getElementById("message").value;
+
+            const statusElement = document.getElementById("status");
+
+            // ตรวจสอบว่าชื่อเป็นภาษาอังกฤษหรือไม่
+            const namePattern = /^[a-zA-Z\s]+$/;
+            if (!namePattern.test(name)) {
+                statusElement.textContent = "กรุณากรอกชื่อเป็นภาษาอังกฤษเท่านั้น!";
+                statusElement.style.color = "red";
+                return;
+            }
+
+            emailjs.send("service_4w9vh5w", "template_9atcb1v", {
+                to_name: name,
+                to_email: email,
+                message: message
+            }).then(
+                function (response) {
+                    console.log("SUCCESS!", response.status, response.text);
+                    statusElement.textContent = "ข้อความของคุณถูกส่งแล้ว! 🎉";
+                    statusElement.style.color = "green";
+                },
+                function (error) {
+                    console.error("FAILED...", error);
+                    statusElement.textContent = "การส่งข้อความล้มเหลว 😢";
+                    statusElement.style.color = "red";
+                }
+            );
+        });
+    </script>
 </body>
 </html>

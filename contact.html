@@ -68,16 +68,13 @@
     <div class="container">
         <h1>🎉 ระบบอวยพรวันเกิด 🎉</h1>
         <form id="birthdayForm">
-            <label for="name">ชื่อผู้ใช้ Instagram ของคุณ (ไม่จำเป็นต้องใส่ @)</label>
-            <input type="text" id="name" name="name" required placeholder="กรุณากรอกชื่อเป็นภาษาอังกฤษ">
+            <label for="username">ชื่อผู้ใช้ Instagram ของคุณ (Your Instagram Username)</label>
+            <input type="text" id="username" name="username" required placeholder="@example">
 
-            <label for="email">อีเมลของคุณ (ไม่บังคับ)</label>
-            <input type="email" id="email" name="email" placeholder="example@example.com">
-
-            <label for="message">ข้อความอวยพร</label>
+            <label for="message">ข้อความอวยพร (Greeting Message)</label>
             <textarea id="message" name="message">สุขสันต์วันเกิด! ขอให้มีความสุขมากๆ นะ</textarea>
 
-            <button type="submit">ส่งข้อความ</button>
+            <button type="submit">ส่งข้อความ (Sent Message)</button>
         </form>
         <p id="status"></p>
     </div>
@@ -85,27 +82,27 @@
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
         // Initializing EmailJS
-        emailjs.init("MUFmg-PGS37iDvS4i"); // ใส่ User ID ของคุณจาก EmailJS
+        emailjs.init("public_xxxxxxxxxx"); // ใส่ Public Key ของคุณจาก EmailJS
 
         document.getElementById("birthdayForm").addEventListener("submit", function (e) {
             e.preventDefault();
 
-            const name = document.getElementById("name").value;
+            const username = document.getElementById("username").value;
             const email = document.getElementById("email").value || "ไม่มีอีเมล";
             const message = document.getElementById("message").value;
 
             const statusElement = document.getElementById("status");
 
-            // ตรวจสอบว่าชื่อเป็นภาษาอังกฤษหรือไม่
-            const namePattern = /^[a-zA-Z\s]+$/;
-            if (!namePattern.test(name)) {
-                statusElement.textContent = "กรุณากรอกชื่อเป็นภาษาอังกฤษเท่านั้น!";
+            // ตรวจสอบว่า Username ถูกต้องหรือไม่
+            const usernamePattern = /^[a-zA-Z0-9._]{1,30}$/;
+            if (!usernamePattern.test(username)) {
+                statusElement.textContent = "กรุณากรอกชื่อผู้ใช้ Instagram ให้ถูกต้อง!";
                 statusElement.style.color = "red";
                 return;
             }
 
-            emailjs.send("service_4w9vh5w", "template_9atcb1v", {
-                to_name: name,
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+                to_name: username,
                 to_email: email,
                 message: message
             }).then(

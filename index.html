@@ -20,6 +20,32 @@
         <a class="rbx" href="https://www.roblox.com/users/219205814/profile">Roblox</a>
     </nav>
 </header>
+<h1>Countdown to My Birthday</h1>
+<div id="countdown">Calculating...</div>
+<script>
+        // วันเกิด: 10 มกราคม
+        const birthday = new Date(new Date().getFullYear(), 0, 10); // 0 = มกราคม
+
+        function updateCountdown() {
+            const now = new Date();
+            // ถ้าวันเกิดในปีนี้ผ่านไปแล้ว ให้ตั้งปีเป็นปีหน้า
+            if (now > birthday) {
+                birthday.setFullYear(now.getFullYear() + 1);
+            }
+
+            const timeLeft = birthday - now;
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = 
+                `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+        }
+
+        // อัปเดตทุก 1 วินาที
+        setInterval(updateCountdown, 1000);
+</script>
 <div class="post">
     <img class="logohead" src="assets/Video.gif" alt="Imgpost">
     <h2>Why do people wear T-shirts printed with "P#rn Hub" logo?</h2>

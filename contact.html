@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday!</title>
+    <title>ระบบอวยพรวันเกิด</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -65,16 +65,19 @@
     </style>
 </head>
 <body>
-    <h1>ระบบอวยพรวันเกิด</h1>
     <div class="container">
+        <h1>🎉 ระบบอวยพรวันเกิด 🎉</h1>
         <form id="birthdayForm">
-            <label for="username">ชื่อผู้ใช้ Instagram ของคุณ (Your Instagram Username)</label>
-            <input type="text" id="username" name="username" required placeholder="@example">
+            <label for="name">ชื่อของคุณ</label>
+            <input type="text" id="name" name="name" required>
 
-            <label for="message">ข้อความอวยพร (Greeting Message)</label>
-            <textarea id="message" name="message">สุขสันต์วันเกิด! ขอให้มีความสุขมากๆ นะ</textarea>
+            <label for="email">อีเมลของคุณ</label>
+            <input type="email" id="email" name="email" required>
 
-            <button type="submit">ส่งข้อความ (Sent Message)</button>
+            <label for="message">ข้อความอวยพร:</label>
+            <textarea id="message" name="message" required>สุขสันต์วันเกิด! ขอให้มีความสุขมากๆ นะ</textarea>
+
+            <button type="submit">ส่งข้อความ</button>
         </form>
         <p id="status"></p>
     </div>
@@ -82,33 +85,25 @@
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
         // Initializing EmailJS
-        emailjs.init("xgo7y5ggl0S3Sijvw"); // ใส่ Public Key ของคุณจาก EmailJS
+        emailjs.init("user_xgo7y5ggl0S3Sijvw"); // ใส่ User ID ของคุณจาก EmailJS
 
         document.getElementById("birthdayForm").addEventListener("submit", function (e) {
             e.preventDefault();
 
-            const username = document.getElementById("username").value;
-            const email = document.getElementById("email").value || "ไม่มีอีเมล";
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
             const message = document.getElementById("message").value;
 
             const statusElement = document.getElementById("status");
 
-            // ตรวจสอบว่า Username ถูกต้องหรือไม่
-            const usernamePattern = /^[a-zA-Z0-9._]{1,30}$/;
-            if (!usernamePattern.test(username)) {
-                statusElement.textContent = "กรุณากรอกชื่อผู้ใช้ Instagram ให้ถูกต้อง!";
-                statusElement.style.color = "red";
-                return;
-            }
-
-            emailjs.send("service_4w9vh5w", "template_th6ljr8", {
-                to_name: username,
+            emailjs.send("template_9atcb1v", "template_9atcb1v", {
+                to_name: name,
                 to_email: email,
                 message: message
             }).then(
                 function (response) {
                     console.log("SUCCESS!", response.status, response.text);
-                    statusElement.textContent = "ข้อความของคุณถูกส่งให้สรันศักดิ์แล้ว! 🎉";
+                    statusElement.textContent = "ข้อความถูกส่งแล้ว! 🎉";
                     statusElement.style.color = "green";
                 },
                 function (error) {
